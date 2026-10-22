@@ -23,7 +23,7 @@ export default function galeria(ctx) {
     conteudo = `<ul class="gallery gallery--demo" role="list">
       ${Array.from({ length: g.espacosDemonstracao }, (_, i) => `<li class="gallery__item">${espacoFoto('foto do box', proporcoes[i % proporcoes.length])}</li>`).join('')}
     </ul>
-    <p class="gallery__note">Espaço para fotos reais do box, das aulas e da comunidade. <span class="tbc">A confirmar</span></p>`;
+    ${ctx.selos ? '<p class="gallery__note">Espaço para fotos reais do box, das aulas e da comunidade. <span class="tbc">A confirmar</span></p>' : ''}`;
   } else {
     return null;
   }

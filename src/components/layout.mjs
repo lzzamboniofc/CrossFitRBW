@@ -70,7 +70,7 @@ export function ctaFlutuante(ctx) {
 }
 
 export function seloModo(ctx) {
-  return ctx.demo
+  return ctx.selos
     ? `<aside class="demo-flag" aria-label="Aviso de demonstração"><strong>Modo demonstração</strong><span>Itens “A confirmar” ficam ocultos na versão pública.</span></aside>`
     : '';
 }

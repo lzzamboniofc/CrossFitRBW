@@ -62,7 +62,7 @@ export default function contato(ctx) {
         ${botaoAcao(ctx, { rastreio: 'contato' })}
         ${mapaAtivo ? `<a class="btn btn--ghost" href="${esc(linkRota(cfg))}" ${atributosExternos}>${icone('pino')}<span>Como chegar</span></a>` : ''}
       </div>
-      ${ctx.demo && !cfg.acao.confirmado ? `<p class="contato__nota">Botão de ação aponta para o Direct do Instagram. Canal oficial <span class="tbc">A confirmar</span></p>` : ''}
+      ${ctx.selos && !cfg.acao.confirmado ? `<p class="contato__nota">Botão de ação aponta para o Direct do Instagram. Canal oficial <span class="tbc">A confirmar</span></p>` : ''}
       ${canais.length ? `<ul class="contato__canais" role="list">${canais.join('')}</ul>` : ''}
     </div>
     ${quadro}

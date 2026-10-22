@@ -23,6 +23,8 @@ Tudo fica em **`site.config.mjs`**: dados do negócio, canal de ação, endereç
 - `modo: 'demonstracao'` → itens pendentes aparecem com selo discreto e fotos ausentes viram quadros neutros. Páginas ficam `noindex`.
 - `modo: 'publico'` → itens pendentes e seções vazias somem; o menu se ajusta sozinho.
 
+**Apresentação limpa:** com `exibirSelos: false` (padrão atual), o modo demonstração mostra textos e ilustrações fictícios sem nenhum selo. Esses itens estão marcados com `ficticio: true` no config e aparecem como `[FICTÍCIO]` em `npm run pendencias`. As ilustrações ficam em `assets/img/fotos/` e devem ser trocadas por fotos reais antes da versão pública.
+
 Dados estruturados (schema.org `ExerciseGym` e `FAQPage`) usam **somente** itens confirmados, em qualquer modo.
 
 ### Trocar o canal de ação

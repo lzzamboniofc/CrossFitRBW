@@ -5,7 +5,8 @@
  * Depois de editar, rode:  npm run build
  *
  * Regra: cada item que depende de confirmação tem `confirmado`.
- *   - modo "demonstracao": itens não confirmados aparecem com o selo "A confirmar".
+ *   - modo "demonstracao": itens não confirmados aparecem (com selo "A confirmar" se exibirSelos = true).
+ *   - `ficticio: true` marca textos e imagens ilustrativos criados para a apresentação.
  *   - modo "publico": itens não confirmados e seções vazias são ocultados.
  *
  * `fonte` registra de onde a informação foi verificada (não aparece no site).
@@ -15,6 +16,11 @@
 export default {
   /** "demonstracao" | "publico"  (também pode ser forçado: npm run build:publico) */
   modo: 'demonstracao',
+
+  /** Mostrar o selo "A confirmar" e os avisos de pendência no modo demonstração?
+   *  false = apresentação limpa: textos e imagens fictícios aparecem sem marcação.
+   *  As pendências continuam listadas em `npm run pendencias`. */
+  exibirSelos: false,
 
   /** URL final do site, com barra no fim. Necessária para sitemap, canonical e Open Graph.
    *  Ex.: https://usuario.github.io/crossfit-rbw/  ou  https://www.crossfitrbw.com.br/ */
@@ -145,9 +151,12 @@ export default {
       'Aulas de CrossFit em grupo no Itu Novo Centro, com coach do começo ao fim e o treino ajustado ao seu nível.',
     rotuloSecundario: 'Ver como é a aula',
     imagem: {
-      arquivo: '', // ex.: assets/img/fotos/hero.webp (foto real do box)
-      alt: 'Alunos treinando na CrossFit RBW',
+      arquivo: 'assets/img/fotos/hero-barra.webp', // trocar por foto real do box
+      largura: 1600,
+      altura: 1100,
+      alt: 'Ilustração de uma barra olímpica carregada com anilhas no chão do box',
       confirmado: false,
+      ficticio: true,
     },
   },
 
@@ -169,8 +178,9 @@ export default {
       },
       {
         texto:
-          '[Espaço para a história do box, proposta e jeito de atender — enviar texto do responsável.]',
+          'O treino é levado a sério, mas o clima é leve: a turma se conhece pelo nome, comemora cada recorde pessoal e termina a aula junto, no quadro.',
         confirmado: false,
+        ficticio: true,
       },
     ],
     estrutura: {
@@ -180,8 +190,8 @@ export default {
       fonte: 'Wellhub',
     },
     imagens: [
-      { arquivo: '', alt: 'Área de treino da CrossFit RBW', confirmado: false },
-      { arquivo: '', alt: 'Aula em grupo na CrossFit RBW', confirmado: false },
+      { arquivo: 'assets/img/fotos/sobre-box.webp', largura: 1600, altura: 1200, alt: 'Ilustração da área de treino com rig, argolas e anilhas', confirmado: false, ficticio: true },
+      { arquivo: 'assets/img/fotos/sobre-kettlebells.webp', largura: 1200, altura: 1200, alt: 'Ilustração de kettlebells enfileirados no chão do box', confirmado: false, ficticio: true },
     ],
   },
 
@@ -212,19 +222,23 @@ export default {
       },
       {
         nome: 'Planos mensais',
-        descricao: '[Planos, frequência semanal e valores — a confirmar com o box.]',
+        descricao:
+          'Frequência de duas, três ou cinco vezes por semana, para encaixar o treino na sua rotina. Fale com o box para conhecer as opções.',
         preco: '',
         duracao: '',
         imagem: { arquivo: '', alt: '' },
         confirmado: false,
+        ficticio: true,
       },
       {
         nome: 'Aula experimental',
-        descricao: '[Confirmar se o box oferece aula experimental e como agendar.]',
+        descricao:
+          'Venha conhecer o box: o coach apresenta os movimentos, ajusta o treino ao seu nível e tira suas dúvidas antes de você começar.',
         preco: '',
         duracao: '',
         imagem: { arquivo: '', alt: '' },
         confirmado: false,
+        ficticio: true,
       },
     ],
   },
@@ -250,8 +264,9 @@ export default {
       },
       {
         titulo: 'Cerca de uma hora',
-        texto: '[Confirmar a duração e a estrutura das aulas do box.]',
+        texto: 'Aquecimento, parte técnica e o WOD do dia, tudo dentro de aproximadamente uma hora de aula.',
         confirmado: false,
+        ficticio: true,
       },
       {
         titulo: 'Comunidade que compete junto',
@@ -260,7 +275,7 @@ export default {
         fonte: 'games.crossfit.com/affiliate/33802 (2026 Athlete Roster)',
       },
     ],
-    imagem: { arquivo: '', alt: 'Coach orientando alunos na CrossFit RBW', confirmado: false },
+    imagem: { arquivo: 'assets/img/fotos/aula-quadro.webp', largura: 1200, altura: 1500, alt: 'Ilustração do quadro com o treino do dia: aquecimento, técnica e WOD', confirmado: false, ficticio: true },
   },
 
   equipe: {
@@ -269,7 +284,8 @@ export default {
       {
         nome: 'Danilo Fonseca',
         funcao: 'Proprietário',
-        apresentacao: '',
+        apresentacao: 'Está à frente do box e cuida da programação e do dia a dia da RBW, de perto de cada aluno.',
+        apresentacaoFicticia: true,
         foto: '',
         instagram: '',
         confirmado: true,
@@ -278,7 +294,8 @@ export default {
       {
         nome: 'Dayanne Rizzi',
         funcao: 'Coach',
-        apresentacao: '',
+        apresentacao: 'Conduz as aulas com atenção à técnica e ao ritmo de cada um, do primeiro treino ao primeiro PR.',
+        apresentacaoFicticia: true,
         foto: '',
         instagram: '',
         confirmado: true,
@@ -293,6 +310,13 @@ export default {
   galeria: {
     titulo: 'O box por dentro',
     fotos: [
+      // Ilustrações fictícias para a apresentação — substituir por fotos reais do box.
+      { arquivo: 'assets/img/fotos/galeria-argolas.webp', largura: 1200, altura: 1500, alt: 'Ilustração de argolas de ginástica penduradas no rig', confirmado: false, ficticio: true },
+      { arquivo: 'assets/img/fotos/galeria-anilhas.webp', largura: 1500, altura: 1000, alt: 'Ilustração de anilhas empilhadas', confirmado: false, ficticio: true },
+      { arquivo: 'assets/img/fotos/galeria-corda.webp', largura: 1200, altura: 1200, alt: 'Ilustração de uma corda de pular no chão emborrachado', confirmado: false, ficticio: true },
+      { arquivo: 'assets/img/fotos/galeria-caixote.webp', largura: 1500, altura: 1000, alt: 'Ilustração de um caixote de salto com kettlebell', confirmado: false, ficticio: true },
+      { arquivo: 'assets/img/fotos/galeria-wallball.webp', largura: 1200, altura: 1500, alt: 'Ilustração de uma wall ball junto à parede com a linha de alvo', confirmado: false, ficticio: true },
+      { arquivo: 'assets/img/fotos/galeria-halteres.webp', largura: 1500, altura: 1000, alt: 'Ilustração de halteres sextavados no chão', confirmado: false, ficticio: true },
       // { arquivo: 'assets/img/fotos/treino-01.webp', largura: 1600, altura: 1067, alt: 'Descrição da foto', confirmado: true },
     ],
     espacosDemonstracao: 6, // quadros neutros exibidos só no modo demonstração quando não há fotos
@@ -338,13 +362,17 @@ export default {
       },
       {
         pergunta: 'Quais são os horários das aulas?',
-        resposta: '[Grade de horários das aulas — a confirmar com o box.]',
+        resposta:
+          'Há turmas de segunda a sábado, pela manhã e no fim da tarde. Confira o horário de funcionamento logo abaixo e reserve sua aula pelo Direct do Instagram.',
         confirmado: false,
+        ficticio: true,
       },
       {
         pergunta: 'Quais são os planos e valores?',
-        resposta: '[Planos, formas de pagamento e valores — a confirmar com o box.]',
+        resposta:
+          'Os planos mensais variam conforme a frequência semanal. Valores e formas de pagamento são passados pelo Direct do Instagram.',
         confirmado: false,
+        ficticio: true,
       },
     ],
   },

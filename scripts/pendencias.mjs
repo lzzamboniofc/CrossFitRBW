@@ -21,7 +21,7 @@ function varrer(no, caminho) {
   if (no && typeof no === 'object') {
     if (no.confirmado === false) {
       const nome = String(rotulo(no)).slice(0, 70);
-      pendentes.push({ caminho, nome, nota: [no.observacao, no.fonte && `fonte: ${no.fonte}`].filter(Boolean).join(' | ') });
+      pendentes.push({ caminho, nome: (no.ficticio ? '[FICTÍCIO] ' : '') + nome, nota: [no.observacao, no.fonte && `fonte: ${no.fonte}`].filter(Boolean).join(' | ') });
     }
     for (const [k, v] of Object.entries(no)) varrer(v, caminho ? `${caminho}.${k}` : k);
   }
@@ -31,11 +31,12 @@ varrer(cfg, '');
 const faltando = [];
 if (!cfg.urlSite.valor) faltando.push('urlSite — endereço final do site (para sitemap, canonical e Open Graph)');
 if (!cfg.marca.logo.arquivo) faltando.push('marca.logo.arquivo — logotipo oficial (hoje: assinatura tipográfica neutra)');
-if (!cfg.hero.imagem.arquivo) faltando.push('hero.imagem — foto principal do box');
-if (!cfg.galeria.fotos.length) faltando.push('galeria.fotos — fotos reais do box (seção oculta no modo público)');
+if (!cfg.hero.imagem.arquivo || cfg.hero.imagem.ficticio) faltando.push('hero.imagem — foto real principal do box (hoje: ilustração)');
+if (!cfg.galeria.fotos.filter((f) => !f.ficticio).length) faltando.push('galeria.fotos — fotos reais do box (hoje: ilustrações fictícias, ocultas no modo público)');
 if (!cfg.avaliacoes.itens.length) faltando.push('avaliacoes.itens — avaliações reais do Google (seção oculta)');
 cfg.equipe.membros.forEach((m, i) => {
   if (!m.foto) faltando.push(`equipe.membros[${i}].foto — foto de ${m.nome}`);
+  if (m.apresentacaoFicticia) faltando.push(`equipe.membros[${i}].apresentacao — [FICTÍCIO] texto de ${m.nome} a validar`);
   if (!m.apresentacao) faltando.push(`equipe.membros[${i}].apresentacao — breve apresentação de ${m.nome}`);
 });
 if (!cfg.contato.whatsapp.numero) faltando.push('contato.whatsapp.numero — WhatsApp oficial');

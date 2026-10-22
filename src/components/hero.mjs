@@ -42,7 +42,7 @@ export default function hero(ctx) {
       ${parceiros ? `<p><span>Parceiro Wellhub e TotalPass</span></p>` : ''}
     </div>
   </div>
-  ${demo && !temFoto ? '<p class="hero__demo-note">Foto real do box a enviar <span class="tbc">A confirmar</span></p>' : ''}
+  ${ctx.selos && !temFoto ? '<p class="hero__demo-note">Foto real do box a enviar <span class="tbc">A confirmar</span></p>' : ''}
 </section>`,
   };
 }

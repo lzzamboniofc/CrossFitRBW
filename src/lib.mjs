@@ -13,13 +13,16 @@ export const confirmado = (item) => !item || item.confirmado !== false;
 /** Contexto de renderização criado no build. */
 export function criarContexto(cfg, modo) {
   const demo = modo === 'demonstracao';
+  const selos = demo && cfg.exibirSelos !== false;
   return {
     cfg,
     demo,
+    /** Avisos de pendência visíveis? (demonstração + exibirSelos) */
+    selos,
     /** Deve aparecer? Confirmado sempre; pendente só na demonstração. */
     mostrar: (item) => confirmado(item) || demo,
     /** Selo discreto para itens pendentes (apenas modo demonstração). */
-    selo: (item) => (demo && !confirmado(item) ? '<span class="tbc">A confirmar</span>' : ''),
+    selo: (item) => (selos && !confirmado(item) ? '<span class="tbc">A confirmar</span>' : ''),
   };
 }
 

@@ -19,7 +19,7 @@ export default function equipe(ctx) {
     .map((m) => {
       const retrato = m.foto
         ? foto({ arquivo: m.foto, alt: `${m.nome}, ${m.funcao} da ${cfg.negocio.nome}`, largura: 800, altura: 1000 }, { sizes: '(min-width: 900px) 25vw, 70vw' })
-        : `<div class="member__mono" aria-hidden="true"><span>${esc(iniciais(m.nome))}</span>${demo ? '<small>Foto a enviar</small>' : ''}</div>`;
+        : `<div class="member__mono" aria-hidden="true"><span>${esc(iniciais(m.nome))}</span>${ctx.selos ? '<small>Foto a enviar</small>' : ''}</div>`;
       return `
       <li class="member reveal">
         <div class="member__photo">${retrato}</div>
@@ -42,7 +42,7 @@ export default function equipe(ctx) {
         <p class="eyebrow">Equipe</p>
         <h2 class="h2" id="equipe-titulo">${esc(e.titulo)}</h2>
       </div>
-      ${demo && e.observacao ? `<p class="section__intro">${esc(e.observacao)} <span class="tbc">A confirmar</span></p>` : ''}
+      ${ctx.selos && e.observacao ? `<p class="section__intro">${esc(e.observacao)} <span class="tbc">A confirmar</span></p>` : ''}
     </header>
     <ul class="team" role="list">${cards}</ul>
   </div>

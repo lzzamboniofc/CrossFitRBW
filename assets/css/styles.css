@@ -662,12 +662,13 @@ body.menu-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 74% 40%;
 }
 .hero--foto .hero__media::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 55%, transparent) 0%, color-mix(in srgb, var(--bg) 20%, transparent) 35%, var(--bg) 92%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 50%, transparent) 0%, color-mix(in srgb, var(--bg) 35%, transparent) 22%, color-mix(in srgb, var(--bg) 80%, transparent) 42%, color-mix(in srgb, var(--bg) 88%, transparent) 70%, var(--bg) 96%);
 }
 .hero--foto .hero__plate {
   display: none;
@@ -696,7 +697,10 @@ body.menu-open {
     width: min(60vw, 820px);
   }
   .hero--foto .hero__media {
-    left: 42%;
+    left: 40%;
+  }
+  .hero__img {
+    object-position: 72% 50%;
   }
   .hero--foto .hero__media::after {
     background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 40%, transparent) 30%, transparent 60%), linear-gradient(0deg, var(--bg) 0%, transparent 30%);
